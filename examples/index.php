@@ -20,7 +20,8 @@ if (empty($_SESSION['access_token'])) {
 <?php
 }
 else {
-    $client = new RestClient(ISDNU_CONSUMER_KEY, ISDNU_CONSUMER_SECRET, $_SESSION['access_token']['oauth_token'], $_SESSION['access_token']['oauth_token_secret']);
+    $request_token = $_SESSION['access_token'];
+    $client = new RestClient(ISDNU_CONSUMER_KEY, ISDNU_CONSUMER_SECRET, $request_token['oauth_token'], $request_token['oauth_token_secret']);
     $userinfo = $client->user_get();
     
     if ($userinfo['errorCode']) {

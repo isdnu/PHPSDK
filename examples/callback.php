@@ -18,7 +18,8 @@ include_once('../isdnusdk/isdnu_sdk.class.php');
 </head>
 <body>
 <?php
-$client = new OAuthClient(ISDNU_CONSUMER_KEY, ISDNU_CONSUMER_SECRET, $_SESSION['request_token']['oauth_token'], $_SESSION['request_token']['oauth_token_secret']);
+$request_token = $_SESSION['request_token'];
+$client = new OAuthClient(ISDNU_CONSUMER_KEY, ISDNU_CONSUMER_SECRET, $request_token['oauth_token'], $request_token['oauth_token_secret']);
 $access_token = $client->getAccessToken($_REQUEST['oauth_verifier'], $_REQUEST['oauth_token']);
 
 if (!empty($access_token['oauth_token'])) {

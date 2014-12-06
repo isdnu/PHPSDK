@@ -11,7 +11,7 @@ if (!empty($request_token['oauth_token'])) {
     $_SESSION['request_token'] = $request_token;
     header('Location: '.$authroize_url);
 }
-else if (!empty($request_token['error_code'])) {
+else {
 ?>
 <!DOCTYPE html>
 <html lang="zh-cn">
@@ -23,12 +23,14 @@ else if (!empty($request_token['error_code'])) {
 </head>
 <body>
 <?php
-    echo "Error Code: ".$request_token['error_code'];
-    echo "Error Type: ".$request_token['error_type'];
-    echo "Error Description: ".$request_token['error_description'];
-}
-else {
-    echo $request_token;
+    if (!empty($request_token['error_code'])) {
+        echo "Error Code: ".$request_token['error_code'];
+        echo "Error Type: ".$request_token['error_type'];
+        echo "Error Description: ".$request_token['error_description'];
+    }
+    else {
+        echo $request_token;
+    }
 }
 ?>
 </body>

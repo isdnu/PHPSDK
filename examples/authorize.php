@@ -11,7 +11,7 @@ if (!empty($request_token['oauth_token'])) {
     $_SESSION['request_token'] = $request_token;
     header('Location: '.$authroize_url);
 }
-else if (!empty($access_token['error_code'])) {
+else if (!empty($request_token['error_code'])) {
 ?>
 <!DOCTYPE html>
 <html lang="zh-cn">
